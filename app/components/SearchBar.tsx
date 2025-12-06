@@ -41,8 +41,10 @@ const SearchBar = () => {
         const formattedProducts = data.map((item: any) => {
           const imgField = item.Imagen || item.imagen;
           const imgUrlRelative = imgField?.url || imgField?.[0]?.url;
-          const finalImage = imgUrlRelative ? `${STRAPI_URL}${imgUrlRelative}` : "/placeholder.png";
-
+const finalImage = imgUrlRelative 
+  ? (imgUrlRelative.startsWith('/') ? `${STRAPI_URL}${imgUrlRelative}` : imgUrlRelative)
+  : "/placeholder.png";
+  
           return {
             id: item.id,
             name: item.Nombre,

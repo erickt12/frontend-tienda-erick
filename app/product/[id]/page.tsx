@@ -26,8 +26,10 @@ const ProductPage = () => {
         if (item) {
           const imgField = item.Imagen || item.imagen;
           const imgUrlRelative = imgField?.url || imgField?.[0]?.url;
-          const finalImage = imgUrlRelative ? `${STRAPI_URL}${imgUrlRelative}` : "/placeholder.png";
-
+const finalImage = imgUrlRelative 
+  ? (imgUrlRelative.startsWith('/') ? `${STRAPI_URL}${imgUrlRelative}` : imgUrlRelative)
+  : "/placeholder.png";
+  
           let descriptionText = "Sin descripción";
           if (item.Descripcion && Array.isArray(item.Descripcion)) {
             descriptionText = item.Descripcion.map((block: any) => 
